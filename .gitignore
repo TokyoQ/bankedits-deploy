@@ -1,0 +1,8 @@
+.vscode
+*__pycache__
+*.out
+*.code-workspace
+.env
+__init__.py
+*.egg-info
+.secret
