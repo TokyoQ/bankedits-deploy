@@ -1,6 +1,5 @@
 import setuptools
 
-
 with open("README.md") as fp:
     long_description = fp.read()
 
@@ -15,8 +14,8 @@ setuptools.setup(
 
     author="TokyoQ",
 
-    package_dir={"": "bankedits_deploy"},
-    packages=setuptools.find_packages(where="bankedits_deploy"),
+    package_dir={"": "bankedits"},
+    packages=setuptools.find_packages(where="bankedits"),
 
     install_requires=[
         "aws-cdk.core",
