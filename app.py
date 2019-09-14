@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
 from aws_cdk import core
-from bankedits.bankedits_stack import BankeditsStack
+from bankedits.app_stack import AppStack
 
 REGION = 'ap-southeast-2'
 
 app = core.App()
-BankeditsStack(app, "bankedits", env={'region': REGION})
+AppStack(app, "bankedits", env={'region': REGION})
 
 app.synth()

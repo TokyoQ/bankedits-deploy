@@ -5,7 +5,7 @@ from aws_cdk import (
     core,
 )
 
-class BankeditsStack(core.Stack):
+class AppStack(core.Stack):
 
     def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
@@ -30,17 +30,21 @@ class BankeditsStack(core.Stack):
         # Security Group
         self._security_group = ec2.SecurityGroup(
             self, id='security_group', vpc=self._vpc, security_group_name='bankedits')
-        self._security_group.add_ingress_rule(
-            peer=ec2.Peer.ipv4('0.0.0.0/0'), connection=ec2.Port.tcp(22),
-            description='Allow SSH traffic')
-        
-        # Instance
+
+        # Public Instance for debugging        
+        # self._security_group.add_ingress_rule(
+        #     peer=ec2.Peer.ipv4('0.0.0.0/0'), connection=ec2.Port.tcp(22),
+        #     description='Allow SSH traffic')
+        # self._instance = ec2.Instance(self, id='instance', instance_type=INSTANCE_TYPE,
+        #     vpc=self._vpc, key_name=KEYNAME, role=self._role, machine_image=ami,
+        #     security_group=self._security_group,
+        #     vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC))
+
+        # Private instance - no ssh
         self._instance = ec2.Instance(self, id='instance', instance_type=INSTANCE_TYPE,
-            vpc=self._vpc,
-            #key_name=KEYNAME,
-            role=self._role, machine_image=ami,
+            vpc=self._vpc, key_name=KEYNAME, role=self._role, machine_image=ami,
             security_group=self._security_group,
-            vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC))
+            vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PRIVATE))
 
         self._instance.add_user_data(
             'aws s3 cp s3://{}/{} .'.format(files.s3_bucket_name, files.s3_object_key),
