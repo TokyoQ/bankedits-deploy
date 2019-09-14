@@ -10,7 +10,10 @@ A cdk app which deploys [@bankedits](https://twitter.com/bankedits) onto AWS.
     consumer_secret=xxx
     access_token=xxx
     access_token_secret=xxx
-3. Install the cdk `npm install -g aws-cdk`
-4. `pip install -r requirements.txt`
-5. Set up your aws credentials file (~/.aws/credentials)
-5. `cdk deploy bankedits`
+3. Create a virtualenv (recommended)
+    `python3 -m venv .env`
+    `source .env/bin/activate`
+4. Install the cdk `npm install -g aws-cdk`
+5. `pip install -r requirements.txt`
+6. Set up your aws credentials file (~/.aws/credentials)
+7. `cdk deploy bankedits`
