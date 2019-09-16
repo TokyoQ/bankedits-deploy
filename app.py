@@ -10,6 +10,7 @@ app = core.App()
 network = NetworkStack(app, "core", env={'region': REGION})
 vpc = network.vpc
 
-appstack = AppStack(app, "bankedits", vpc, env={'region': REGION})
+AppStack(app, "bankedits-public", vpc, public=True, env={'region': REGION})
+AppStack(app, "bankedits-private", vpc, env={'region': REGION})
 
 app.synth()
