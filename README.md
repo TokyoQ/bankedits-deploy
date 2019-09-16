@@ -18,4 +18,6 @@ A cdk app which deploys [@bankedits](https://twitter.com/bankedits) onto AWS.
 4. Install the cdk `npm install -g aws-cdk`
 5. `pip install -r requirements.txt`
 6. Set up your aws credentials file (~/.aws/credentials)
-7. `cdk deploy bankedits`
+7. `cdk bootstrap`
+8. `cdk deploy core`
+8. `cdk deploy bankedits-private`
