@@ -3,6 +3,7 @@
 *.out
 *.code-workspace
 .env
+.venv
 __init__.py
 *.egg-info
-.secret
+*.secret
